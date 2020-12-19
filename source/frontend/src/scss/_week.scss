@@ -1,0 +1,48 @@
+.week{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top:0;
+	left:0;
+	display: flex;
+	flex-direction: column;
+	.weekday-con{
+		height: 5%;
+	}
+	.space-con{
+		display: flex;
+		height: 95%;
+		&>div{
+			display:flex;
+			padding: 10px 1%;
+		}
+		.fixed-space{
+			width: 21%;
+			box-shadow: 8px 0 3px -3px #5656566b;	
+			.card-h{
+				width: 100%;
+			}
+		}
+		.move-space{
+			width: 70%;
+			justify-content: space-between;
+			overflow-x: scroll;
+			
+			&::-webkit-scrollbar {
+				width: 10px;
+			}
+			&::-webkit-scrollbar-thumb {
+			background-color: #4f8f81;
+			border-radius: 10px;
+			background-clip: padding-box;
+			border: 2px solid transparent;
+			}
+			
+			.card-h{
+				width: 30%;
+				flex-shrink: 0;
+				margin-right: 3%;
+			}
+		}
+	}
+}

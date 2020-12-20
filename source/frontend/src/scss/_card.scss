@@ -1,0 +1,10 @@
+.card-h{
+	width: 30%;
+	flex-shrink: 0;
+	margin-right: 3%;
+	.card-content{
+		.plan-row{
+			display: flex;
+		}
+	}
+}

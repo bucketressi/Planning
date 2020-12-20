@@ -1,10 +1,12 @@
-import React, { useState, forwardRef, useEffect } from 'react';
+import React, { useState, forwardRef, useEffect, createRef } from 'react';
 import { Grid } from '@material-ui/core';
 import { CardCom } from './';
 
 const Week = forwardRef((props, ref) => {
 	const [day, setDay] = useState(props.day);
 	const [dayArray, setArray] = useState([]);
+
+	const card = createRef();
 
 	useEffect(()=>{
 		let tmp = day;
@@ -15,10 +17,10 @@ const Week = forwardRef((props, ref) => {
 			tmp = new Date(new Date(tmp).setDate(tmp.getDate()+1));
 		}
 		setArray(array);
-	}, day);
+	}, [day]);
 
 	return(
-		<Grid ref={ref} className="week">
+		<Grid className="week" ref = {ref}>
 			<Grid className="weekday-con">
 				{
 					dayArray.length===0?
@@ -38,10 +40,13 @@ const Week = forwardRef((props, ref) => {
 					{	
 						dayArray.length===0?
 							undefined:
-							dayArray.map((string)=>
+							dayArray.map((string, index)=>
 								<CardCom
+									key= {index}
 									type='day'
 									dayString = {string}
+									plan = {props.plan[string]}
+									ref = {card}
 								/>
 							)
 					}

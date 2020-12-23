@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Header, Container } from './component';
 import { usePlanState, usePlanDispatch, useDayState } from './Model';
 
@@ -45,6 +45,10 @@ const ViewModel = () => {
 			throw err;
 		}
 	}
+	
+	useEffect(()=>{
+
+	},[plan]);
 
 	return (
 		<>

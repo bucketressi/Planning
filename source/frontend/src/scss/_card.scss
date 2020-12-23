@@ -2,6 +2,12 @@
 	width: 30%;
 	flex-shrink: 0;
 	margin-right: 3%;
+	.card-title{
+		text-align: center;
+		margin-bottom: 11px;
+		padding-bottom: 11px;
+		border-bottom: 1px solid gray;
+	}
 	.card-content{
 		.plan-row{
 			display: flex;

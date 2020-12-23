@@ -1,5 +1,5 @@
 import React, { useState, forwardRef, useEffect, createRef } from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid, Paper } from '@material-ui/core';
 import { CardCom } from './';
 
 const Week = forwardRef((props, ref) => {
@@ -25,9 +25,9 @@ const Week = forwardRef((props, ref) => {
 				{
 					dayArray.length===0?
 						undefined:
-						<>
+						<Paper>
 							{dayArray[0]+"-"+dayArray[6]}
-						</>
+						</Paper>
 				}
 			</Grid>
 			<Grid className="space-con">
@@ -45,7 +45,10 @@ const Week = forwardRef((props, ref) => {
 									key= {index}
 									type='day'
 									dayString = {string}
-									plan = {props.plan[string]}
+									changePlan = {props.changePlan}
+									deletePlan = {props.deletePlan}
+									addPlan = {props.addPlan}
+									plan = {props.plan}
 									ref = {card}
 								/>
 							)

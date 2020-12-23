@@ -1,9 +1,16 @@
 .header{
 	display: flex;
-	align-items: flex-end;
+	align-content: center;
 	justify-content: center;
-	height: 5vh;
-	p{
-		margin-left: 8px;
+	width: 100%;
+	height: 8vh;
+	min-height: 8vh;
+	.title-con{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		p{
+			margin-left: 8px;
+		}
 	}
 }

@@ -10,14 +10,14 @@ export const DayStateContext = createContext(null);
 export const PlanContextProvider = ({children}) => {
 	const [plan, setPlan] = useState({
 		"2020/12/20":[
-			{"Planning front 완성하기":1},
-			{"회사 갈 준비..":0},
-			{"// 개발자 회의하기":1}
+			{"Planning front 완성하기":true},
+			{"회사 갈 준비..":false},
+			{"// 개발자 회의하기":true}
 		], 
 		"2020/12/21":[
-			{"SBA 출근":0},
-			{"자리 정리하기":0},
-			{"인수인계 정리":0}
+			{"SBA 출근":false},
+			{"자리 정리하기":false},
+			{"인수인계 정리":false}
 		]
 	});
 

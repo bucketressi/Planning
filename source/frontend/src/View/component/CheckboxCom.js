@@ -6,6 +6,7 @@ const CheckboxCom = forwardRef((props, ref) =>{
 		<Grid className="plan-row" ref = {ref}>
 			<Checkbox 
 				checked = {props.done}
+				onChange = {props.toggleCheck}
 			/><Typography>{props.todo}</Typography>
 		</Grid>
 	);

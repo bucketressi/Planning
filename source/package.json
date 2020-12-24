@@ -1,0 +1,12 @@
+{
+  "name": "source",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+	"start" : "cd backend && npm start",
+	"build" : "cd frontend && npm start"
+  },
+  "author": "",
+  "license": "ISC"
+}

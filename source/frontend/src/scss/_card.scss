@@ -11,6 +11,10 @@
 	.card-content{
 		.plan-row{
 			display: flex;
+			&>span{
+				margin-right: 4px;
+				color: #66a99a;
+			}
 		}
 	}
 }

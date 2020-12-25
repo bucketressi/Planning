@@ -1,5 +1,5 @@
 import { createRef, forwardRef, useState, useEffect } from 'react';
-import { Grid, Checkbox, Input } from '@material-ui/core';
+import { Grid, Checkbox, Input, Button } from '@material-ui/core';
 
 const CheckboxCom = forwardRef((props, ref)=>{
 	const inputRef = createRef();
@@ -13,7 +13,9 @@ const CheckboxCom = forwardRef((props, ref)=>{
 			<Checkbox 
 				checked = {props.done}
 				onChange = {props.toggleCheck}
-			/><Input ref = {inputRef} onInput = {(e) => props.changePlan(e.target.value)} value= {props.todo}></Input>
+			/>
+			<Input ref = {inputRef} onInput = {(e) => props.changePlan(e.target.value)} value= {props.todo}></Input>
+			<Button color="secondary">x</Button>
 		</Grid>
 	);
 });

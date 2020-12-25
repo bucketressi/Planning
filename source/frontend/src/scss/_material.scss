@@ -1,3 +1,6 @@
 .MuiIconButton-root{
 	padding: 0!important;
 }
+.MuiInput-underline::after{
+	border-bottom: 2px solid $main-color!important;
+}

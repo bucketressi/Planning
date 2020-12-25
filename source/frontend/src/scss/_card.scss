@@ -6,14 +6,17 @@
 		text-align: center;
 		margin-bottom: 11px;
 		padding-bottom: 11px;
-		border-bottom: 1px solid gray;
+		border-bottom: 1px solid $light-gray;
 	}
 	.card-content{
 		.plan-row{
 			display: flex;
-			&>span{
+			span{
 				margin-right: 4px;
-				color: #66a99a;
+				color: $main-color;
+			}
+			.line{
+				text-decoration: line-through;
 			}
 		}
 	}

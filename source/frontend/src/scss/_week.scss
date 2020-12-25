@@ -22,7 +22,7 @@
 		}
 		.fixed-space{
 			width: 21%;
-			box-shadow: 8px 0 3px -3px #5656566b;	
+			box-shadow: 8px 0 3px -3px $dark-gray;	
 			.card-h{
 				width: 100%;
 			}
@@ -36,7 +36,7 @@
 				width: 10px;
 			}
 			&::-webkit-scrollbar-thumb {
-			background-color: #4f8f81;
+			background-color: $sub-color;
 			border-radius: 10px;
 			background-clip: padding-box;
 			border: 2px solid transparent;

@@ -1,13 +1,19 @@
-import { forwardRef } from 'react';
-import { Grid, Checkbox, Typography } from '@material-ui/core';
+import { createRef, forwardRef, useState, useEffect } from 'react';
+import { Grid, Checkbox, Input } from '@material-ui/core';
 
-const CheckboxCom = forwardRef((props, ref) =>{
+const CheckboxCom = forwardRef((props, ref)=>{
+	const inputRef = createRef();
+
+	useEffect(()=>{
+		inputRef.current.children[0].value = props.todo;
+	},[props]);
+
 	return(
 		<Grid className="plan-row" ref = {ref}>
 			<Checkbox 
 				checked = {props.done}
 				onChange = {props.toggleCheck}
-			/><Typography>{props.todo}</Typography>
+			/><Input ref = {inputRef} onInput = {(e) => props.changePlan(e.target.value)} value= {props.todo}></Input>
 		</Grid>
 	);
 });

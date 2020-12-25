@@ -36,6 +36,10 @@ const CardCom = forwardRef((props, ref) => {
 										props.changePlan(props.dayString, id, todo, !done);
 										forceUpdate(!update);
 									}}
+									changePlan = {(todo) => {
+										props.changePlan(props.dayString, id, todo, done);
+										forceUpdate(!update);
+									}}
 									ref = {todoRef}
 								/>
 							);

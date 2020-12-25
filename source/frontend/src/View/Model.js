@@ -10,7 +10,7 @@ export const DayStateContext = createContext(null);
 export const PlanContextProvider = ({children}) => {
 	const [plan, setPlan] = useState(
 	{
-		"2020/12/20" : {
+		"2020/12/21" : {
 			tasks : {
 				"122001":
 					{
@@ -37,7 +37,7 @@ export const PlanContextProvider = ({children}) => {
 	const setDBPlan = (array) => {
 		setPlan(array);
 		// DB 등록
-		console.log('db 등록');
+		console.log(plan);
 	}
 
 	return (

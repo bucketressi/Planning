@@ -8,9 +8,8 @@ const CardCom = forwardRef((props, ref) => {
 	const [plan, setPlan] = useState();
 
 	useEffect(()=>{
-		if(props.plan!=undefined && props.dayString!=undefined)
-			setPlan(props.plan[props.dayString]);
-		console.log(props);
+		if(props.plan!=undefined && props.dayString!=undefined && props.plan[props.dayString]!=undefined)
+		 setPlan(props.plan[props.dayString].tasks);
 	},[props])
 
 	return(
@@ -25,17 +24,16 @@ const CardCom = forwardRef((props, ref) => {
 				</Grid>
 				<Grid className="card-content">
 					{plan?
-						Object.keys(plan).map( idx => {
-							const todo = Object.keys(plan[idx])[0];
-							const done = plan[idx][todo];
+						Object.keys(plan).map(id => {
+							const todo = plan[id].plan;
+							const done = plan[id].check;
 							return(
 								<CheckboxCom
-									key = {idx}
+									key = {id}
 									todo = {todo}
 									done = {done}
 									toggleCheck = {() => {
-										props.changePlan(props.dayString, idx, todo, !done);
-										console.log('check 완료');
+										props.changePlan(props.dayString, id, todo, !done);
 										forceUpdate(!update);
 									}}
 									ref = {todoRef}

@@ -26,7 +26,7 @@ const Week = forwardRef((props, ref) => {
 					dayArray.length===0?
 						undefined:
 						<Paper>
-							{dayArray[0]+"-"+dayArray[6]}
+							{dayArray[0]+" - "+dayArray[6]}
 						</Paper>
 				}
 			</Grid>

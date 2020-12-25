@@ -8,17 +8,30 @@ export const DayStateContext = createContext(null);
 // Model은 Context 저장 및 제공
 // plan
 export const PlanContextProvider = ({children}) => {
-	const [plan, setPlan] = useState({
-		"2020/12/20":[
-			{"Planning front 완성하기":true},
-			{"회사 갈 준비..":false},
-			{"// 개발자 회의하기":true}
-		], 
-		"2020/12/21":[
-			{"SBA 출근":false},
-			{"자리 정리하기":false},
-			{"인수인계 정리":false}
-		]
+	const [plan, setPlan] = useState(
+	{
+		"2020/12/20" : {
+			tasks : {
+				"122001":
+					{
+						index : 1,
+						plan : "Planning front 완성하기",
+						check : true
+					},
+				"122002":
+					{
+						index : 2,
+						plan : "SBA 출근",
+						check : false
+					},
+				"122003":
+					{
+						index : 3,
+						plan : "개발자 회의하기",
+						check : false
+					}
+			}
+		}
 	});
 
 	const setDBPlan = (array) => {

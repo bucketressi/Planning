@@ -10,10 +10,34 @@ const ViewModel = () => {
 
 	const title = "Planning";
 
-	const changePlan = (date, idx, string, boolean) => {
+	const getId = (date, taskObject) => {
+		const array = Object.keys(taskObject);
+		const lastKey = array[array.length()-1];
+		let index = Number(lastKey.substr(4,2))+1;
+		
+		if(index<10){
+			index += "0"+index;
+		}
+		
+		return date + index;
+	}
+
+	const getIndex = (taskObject) => {
+		const array = Object.values(taskObject);
+		let indexArray = [];
+		array.map(arr => {
+			indexArray.push(arr.index);
+		});
+		indexArray.sort();
+		
+		return indexArray[indexArray.length()-1]+1;
+	}
+
+	const changePlan = (date, id, string, boolean) => {
 		try{
 			let tmp = plan;
-			tmp[date][idx][string] = boolean;
+			tmp[date].tasks[id].plan = string;
+			tmp[date].tasks[id].check = boolean;
 			setPlan(tmp);
 		}catch(err){
 			console.log("change plan");
@@ -22,10 +46,10 @@ const ViewModel = () => {
 		}
 	}
 
-	const deletePlan = (date, idx) => {
+	const deletePlan = (date, id) => {
 		try{
 			let tmp = plan;
-			tmp[date].splice(idx, 1);
+			delete tmp[date].tasks[id];
 			setPlan(tmp);
 		}catch(err){
 			console.log("delete plan");
@@ -37,7 +61,13 @@ const ViewModel = () => {
 	const addPlan = (date) => {
 		try{
 			let tmp = plan;
-			tmp[date].push("");
+			const id = getId(date, tmp[date].tasks);
+			const index = getIndex(tmp[date].tasks);
+			tmp[date].tasks[id] = {
+				index : index,
+				plan : "",
+				check : false
+			}
 			setPlan(tmp);
 		}catch(err){
 			console.log("add plan");

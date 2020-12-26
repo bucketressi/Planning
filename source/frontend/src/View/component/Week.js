@@ -5,6 +5,7 @@ import { CardCom } from './';
 const Week = forwardRef((props, ref) => {
 	const [day, setDay] = useState(props.day);
 	const [dayArray, setArray] = useState([]);
+	const [update, forceUpdate] = useState(true);
 
 	const card = createRef();
 
@@ -47,7 +48,10 @@ const Week = forwardRef((props, ref) => {
 									dayString = {string}
 									changePlan = {props.changePlan}
 									deletePlan = {props.deletePlan}
-									addPlan = {props.addPlan}
+									addPlan = {(dayString) => {
+										props.addPlan(dayString);
+										forceUpdate(!update);
+									}}
 									plan = {props.plan}
 									ref = {card}
 								/>

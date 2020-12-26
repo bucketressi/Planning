@@ -1,6 +1,6 @@
 import { forwardRef, createRef, useState, useEffect } from 'react';
 import { CheckboxCom } from './';
-import { Grid, Card, CardContent } from '@material-ui/core';
+import { Grid, Card, CardContent, Button} from '@material-ui/core';
 
 const CardCom = forwardRef((props, ref) => {
 	const todoRef = createRef();
@@ -40,12 +40,20 @@ const CardCom = forwardRef((props, ref) => {
 										props.changePlan(props.dayString, id, todo, done);
 										forceUpdate(!update);
 									}}
+									deletePlan = {() => {
+										props.deletePlan(props.dayString, id);
+										forceUpdate(!update);
+									}}
 									ref = {todoRef}
 								/>
 							);
 						})
 						:undefined
 					}
+					{props.type==='whole'? undefined:
+					<Grid className = "plan-row">
+						<Button color="primary" fullWidth = {true} onClick = {() => {props.addPlan(props.dayString)}}>+</Button>
+					</Grid>}
 				</Grid>
 			</CardContent>
 		</Card>

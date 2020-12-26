@@ -12,19 +12,19 @@ export const PlanContextProvider = ({children}) => {
 	{
 		"2020/12/21" : {
 			tasks : {
-				"122001":
+				"122101":
 					{
 						index : 1,
 						plan : "Planning front 완성하기",
 						check : true
 					},
-				"122002":
+				"122102":
 					{
 						index : 2,
 						plan : "SBA 출근",
 						check : false
 					},
-				"122003":
+				"122103":
 					{
 						index : 3,
 						plan : "개발자 회의하기",

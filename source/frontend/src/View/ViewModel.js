@@ -12,25 +12,13 @@ const ViewModel = () => {
 
 	const getId = (date, taskObject) => {
 		const array = Object.keys(taskObject);
-		const lastKey = array[array.length()-1];
+		const lastKey = array[array.length-1];
 		let index = Number(lastKey.substr(4,2))+1;
-		
+			
 		if(index<10){
-			index += "0"+index;
+			index = "0"+index;
 		}
-		
-		return date + index;
-	}
-
-	const getIndex = (taskObject) => {
-		const array = Object.values(taskObject);
-		let indexArray = [];
-		array.map(arr => {
-			indexArray.push(arr.index);
-		});
-		indexArray.sort();
-		
-		return indexArray[indexArray.length()-1]+1;
+		return lastKey.substr(0,4) + index;
 	}
 
 	const changePlan = (date, id, string, boolean) => {
@@ -49,6 +37,10 @@ const ViewModel = () => {
 	const deletePlan = (date, id) => {
 		try{
 			let tmp = plan;
+			let index = tmp[date].tasks[id].index;
+			for(var key in tmp[date].tasks) {
+				if (tmp[date].tasks[key].index > index) tmp[date].tasks[key].index-=1;
+			}
 			delete tmp[date].tasks[id];
 			setPlan(tmp);
 		}catch(err){
@@ -61,8 +53,16 @@ const ViewModel = () => {
 	const addPlan = (date) => {
 		try{
 			let tmp = plan;
-			const id = getId(date, tmp[date].tasks);
-			const index = getIndex(tmp[date].tasks);
+			let id = "";
+			let index = 0;
+			if (tmp[date] && Object.keys(tmp[date].tasks).length) {
+				id = getId(date, tmp[date].tasks)
+				index = Object.keys(tmp[date].tasks).length + 1;
+			} else {
+				tmp[date] = {tasks:{} }
+				id = date.substr(5,2) + date.substr(8,2) + "01";
+				index = 1;
+			}
 			tmp[date].tasks[id] = {
 				index : index,
 				plan : "",

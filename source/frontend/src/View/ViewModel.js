@@ -56,11 +56,15 @@ const ViewModel = () => {
 			let id = "";
 			let index = 0;
 			if (tmp[date] && Object.keys(tmp[date].tasks).length) {
-				id = getId(date, tmp[date].tasks)
+				id = getId(date, tmp[date].tasks);
 				index = Object.keys(tmp[date].tasks).length + 1;
 			} else {
 				tmp[date] = {tasks:{} }
-				id = date.substr(5,2) + date.substr(8,2) + "01";
+				const month = new Date(date).getMonth() + 1;
+				const day = new Date(date).getDate();
+				id += month < 10 ? "0" + month : String(month);
+				id += day < 10 ? "0" + day : String(day);
+				id += "01";
 				index = 1;
 			}
 			tmp[date].tasks[id] = {

@@ -15,7 +15,7 @@ const CheckboxCom = forwardRef((props, ref)=>{
 				onChange = {props.toggleCheck}
 			/>
 			<Input ref = {inputRef} onInput = {(e) => props.changePlan(e.target.value)} value= {props.todo}></Input>
-			<Button color="secondary">x</Button>
+			<Button color="secondary" onClick = {props.deletePlan}>x</Button>
 		</Grid>
 	);
 });

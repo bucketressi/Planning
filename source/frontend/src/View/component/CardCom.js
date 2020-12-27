@@ -10,21 +10,19 @@ const CardCom = forwardRef((props, ref) => {
 	useEffect(()=>{
 		if(props.plan!=undefined && props.dayString!=undefined && props.plan[props.dayString]!=undefined)
 		 setPlan(props.plan[props.dayString].tasks);
-	},[props])
+	},[props]);
 
-	const [{ canDrop, isOver }, drop] = useDrop({
+	const [, drop] = useDrop({
 		accept: 'CheckboxCom',
-		drop: () => { return {
-			movePlan : (dayString, id, todo) => {
+		drop: () => { 
+			return { 
+				movePlan : (dayString, id, value) => {
 				props.deletePlan(dayString, id);
-				props.addPlan(props.dayString, todo);
+				props.addPlan(props.dayString, value);
+				}
 			}
-		}},
-		collect: (monitor) => ({
-			isOver: monitor.isOver(),
-			canDrop: monitor.canDrop()
-		})
-	})
+		}
+	});
 
 	return(
 		<Card className="card-h" ref = {drop}>
@@ -41,14 +39,11 @@ const CardCom = forwardRef((props, ref) => {
 						Object.keys(plan).map(id => {
 							const todo = plan[id].plan;
 							const done = plan[id].check;
-							const index = plan[id].index;
 							return(
 								<CheckboxCom
-									key = {id}
 									id = {id}
 									todo = {todo}
 									done = {done}
-									index = {index}
 									dayString = {props.dayString}
 									toggleCheck = {() => {
 										props.changePlan(props.dayString, id, todo, !done);

@@ -50,7 +50,7 @@ const ViewModel = () => {
 		}
 	}
 
-	const addPlan = (date, todo) => {
+	const addPlan = (date, value) => {
 		try{
 			let tmp = plan;
 			let id = "";
@@ -58,20 +58,27 @@ const ViewModel = () => {
 			if (tmp[date] && Object.keys(tmp[date].tasks).length) {
 				id = getId(date, tmp[date].tasks);
 				index = Object.keys(tmp[date].tasks).length + 1;
-			} else {
+			}else{
 				tmp[date] = {tasks:{} }
 				const month = new Date(date).getMonth() + 1;
 				const day = new Date(date).getDate();
-				id += month < 10 ? "0" + month : String(month);
-				id += day < 10 ? "0" + day : String(day);
+				id += month < 10 ? "0"+month : String(month);
+				id += day < 10 ? "0"+day : String(day);
 				id += "01";
 				index = 1;
 			}
-			console.log(todo)
-			tmp[date].tasks[id] = {
-				index : index,
-				plan : todo? todo : "",
-				check : false
+			if (value) {
+				tmp[date].tasks[id] = {
+					index : value.index? value.index : index,
+					plan : value.plan? value.plan : "",
+					check : value.check? value.check : false
+				}
+			}else{
+				tmp[date].tasks[id] = {
+					index : index,
+					plan : "",
+					check : false
+				}
 			}
 			setPlan(tmp);
 		}catch(err){

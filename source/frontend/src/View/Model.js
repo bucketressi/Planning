@@ -37,7 +37,6 @@ export const PlanContextProvider = ({children}) => {
 	const setDBPlan = (array) => {
 		setPlan(array);
 		// DB 등록
-		console.log(plan);
 	}
 
 	return (

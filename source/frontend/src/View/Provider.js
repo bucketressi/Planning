@@ -3,6 +3,8 @@ import ViewModel from './ViewModel';
 import { PlanContextProvider, DayContextProvider } from './Model';
 import { ThemeProvider } from "@material-ui/core/styles";
 import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 const theme = unstable_createMuiStrictModeTheme();
 
@@ -11,7 +13,9 @@ const Provider = () => (
 	<PlanContextProvider>
 		<DayContextProvider>
 			<ThemeProvider theme = {theme}>
-				<ViewModel/>
+				<DndProvider backend={HTML5Backend}>
+					<ViewModel/>
+				</DndProvider>
 			</ThemeProvider>
 		</DayContextProvider>
 	</PlanContextProvider>

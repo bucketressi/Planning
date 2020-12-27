@@ -48,10 +48,11 @@ const Week = forwardRef((props, ref) => {
 									dayString = {string}
 									changePlan = {props.changePlan}
 									deletePlan = {props.deletePlan}
-									addPlan = {(dayString) => {
-										props.addPlan(dayString);
+									addPlan = {(dayString, todo) => {
+										props.addPlan(dayString, todo);
 										forceUpdate(!update);
 									}}
+									forceUpdate = {forceUpdate}
 									plan = {props.plan}
 									ref = {card}
 								/>

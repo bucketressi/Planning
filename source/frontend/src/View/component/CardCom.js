@@ -1,9 +1,9 @@
 import { forwardRef, createRef, useState, useEffect } from 'react';
 import { CheckboxCom } from './';
 import { Grid, Card, CardContent, Button} from '@material-ui/core';
+import { useDrop } from 'react-dnd'
 
 const CardCom = forwardRef((props, ref) => {
-	const todoRef = createRef();
 	const [update, forceUpdate] = useState(true);
 	const [plan, setPlan] = useState();
 
@@ -12,8 +12,22 @@ const CardCom = forwardRef((props, ref) => {
 		 setPlan(props.plan[props.dayString].tasks);
 	},[props])
 
+	const [{ canDrop, isOver }, drop] = useDrop({
+		accept: 'CheckboxCom',
+		drop: () => { return {
+			movePlan : (dayString, id, todo) => {
+				props.deletePlan(dayString, id);
+				props.addPlan(props.dayString, todo);
+			}
+		}},
+		collect: (monitor) => ({
+			isOver: monitor.isOver(),
+			canDrop: monitor.canDrop()
+		})
+	})
+
 	return(
-		<Card className="card-h" ref = {ref}>
+		<Card className="card-h" ref = {drop}>
 			<CardContent>
 				<Grid className="card-title">
 					{
@@ -27,11 +41,15 @@ const CardCom = forwardRef((props, ref) => {
 						Object.keys(plan).map(id => {
 							const todo = plan[id].plan;
 							const done = plan[id].check;
+							const index = plan[id].index;
 							return(
 								<CheckboxCom
 									key = {id}
+									id = {id}
 									todo = {todo}
 									done = {done}
+									index = {index}
+									dayString = {props.dayString}
 									toggleCheck = {() => {
 										props.changePlan(props.dayString, id, todo, !done);
 										forceUpdate(!update);
@@ -44,7 +62,7 @@ const CardCom = forwardRef((props, ref) => {
 										props.deletePlan(props.dayString, id);
 										forceUpdate(!update);
 									}}
-									ref = {todoRef}
+									ref = {drop}
 								/>
 							);
 						})

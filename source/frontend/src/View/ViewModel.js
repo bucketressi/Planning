@@ -50,7 +50,7 @@ const ViewModel = () => {
 		}
 	}
 
-	const addPlan = (date) => {
+	const addPlan = (date, todo) => {
 		try{
 			let tmp = plan;
 			let id = "";
@@ -67,9 +67,10 @@ const ViewModel = () => {
 				id += "01";
 				index = 1;
 			}
+			console.log(todo)
 			tmp[date].tasks[id] = {
 				index : index,
-				plan : "",
+				plan : todo? todo : "",
 				check : false
 			}
 			setPlan(tmp);

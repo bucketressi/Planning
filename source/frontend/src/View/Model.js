@@ -10,21 +10,21 @@ export const DayStateContext = createContext(null);
 export const PlanContextProvider = ({children}) => {
 	const [plan, setPlan] = useState(
 	{
-		"2020/12/21" : {
+		"2021/04/19" : {
 			tasks : {
-				"122001":
+				"041901":
 					{
 						index : 1,
 						plan : "Planning front 완성하기",
 						check : true
 					},
-				"122002":
+				"041902":
 					{
 						index : 2,
 						plan : "SBA 출근",
 						check : false
 					},
-				"122003":
+				"041903":
 					{
 						index : 3,
 						plan : "개발자 회의하기",
@@ -54,11 +54,12 @@ export const DayContextProvider = ({children}) => {
 	const [day, setDay] = useState(undefined);
 
 	useEffect(()=>{
+		// 날짜가 바뀔 때마다 요일 바꾸기
 		const setMonday = () => {
 			const now = new Date(Date.now());
 			const weekday = now.getDay();
 			const sub = weekday-1;
-			setDay(new Date(new Date(now).setDate(now.getDate()-sub)));
+			setDay(new Date(new Date(now).setDate(now.getDate()-sub-7))); // 일주일 전 날짜를 처음으로 세팅
 		}
 		setMonday();
 	},[new Date(Date.now()).getDate()]);
